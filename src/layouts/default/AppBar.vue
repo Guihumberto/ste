@@ -26,6 +26,9 @@
         </v-list>
       </div>
     </v-expand-transition>
+    <div class="fixUpPage" v-show="!menuShow">
+      <v-btn href="#home" color="success" size="5rem" icon="mdi-arrow-up"></v-btn>
+    </div>
 </template>
 
 <script setup>
@@ -162,7 +165,7 @@
   opacity: 0;
   animation: slideTop 1s ease forwards;
   animation-delay: calc(.2s * var(--i));
-  translate: .5s ease;
+  transition: .5s ease;
 }
 .navBar .active,
 .navBar a:hover{
@@ -186,6 +189,13 @@
 #menuBar{
   opacity: 0;
   animation: slideTop 1s ease forwards;
+}
+.fixUpPage{
+  position: fixed;
+  bottom: 5%;
+  right: 10%;
+  z-index: 100;
+  transition: .5s ease;
 }
 @keyframes slideTop {
   0%{

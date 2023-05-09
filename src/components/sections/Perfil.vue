@@ -10,8 +10,10 @@
           prepend-inner-icon="mdi-at"
           placeholder="Digite seu e-mail"
           density="compact"
-          color="black"
           focused
+          :rules="[
+            (val) => isValidEmail(val) || 'Digite um endereço de e-mail válido',
+          ]"
         ></v-text-field>
         <btn />
       </v-form>
@@ -21,7 +23,15 @@
 
 <script setup>
 import btn from '@/components/elements/btn-cad.vue'
-import btnSharp from '@/components/elements/btn-sharp.vue'
+
+const isValidEmail = email =>  {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+}
+
 </script>
 
 <style scoped>
