@@ -209,8 +209,8 @@ section{
     font-size: .9rem;
   }
   .bannerInfo{
-    width: 480px;
-    max-height: 300px;
+    width: 450px;
+    max-height: 280px;
     background: purple;
     border: 2px solid rgba(255, 255, 255, .5);
     border-right: 2px solid rgba(255, 255, 255, .2);
@@ -218,11 +218,23 @@ section{
   }
   .pillars-content h3 {
     margin: 5px;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
   .pillars-content .pillar4{
      margin-right: 15px;
+  }
+  .pillars-content .pillar3{
+    top: 0;
+    right: 0;
+    margin-top: 2px;
+    margin-right: 2px;
+  }
+  .pillars-content .pillar5{
+    bottom: 0;
+    right: 0;
+    margin-bottom: 2px;
+    margin-right: 2px;
   }
 }
 
