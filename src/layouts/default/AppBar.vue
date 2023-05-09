@@ -26,9 +26,11 @@
         </v-list>
       </div>
     </v-expand-transition>
-    <div class="fixUpPage" v-show="!menuShow">
-      <v-btn href="#home" color="success" size="5rem" icon="mdi-arrow-up"></v-btn>
-    </div>
+    <v-expand-transition>
+      <div class="fixUpPage" v-show="!menuShow">
+        <v-btn href="#home" color="success" size="5rem" icon="mdi-chevron-up"></v-btn>
+      </div>
+    </v-expand-transition>
 </template>
 
 <script setup>
@@ -193,9 +195,12 @@
 .fixUpPage{
   position: fixed;
   bottom: 5%;
-  right: 10%;
+  right: 20%;
   z-index: 100;
   transition: .5s ease;
+}
+.fixUpPage .v-btn__content{
+  font-size: 2rem;
 }
 @keyframes slideTop {
   0%{
