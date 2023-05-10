@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script scoped>
+<script>
   export default {
     data: () => {
       return {
@@ -63,14 +63,14 @@
 </script>
 
 <style lang="scss" scoped>
-  .wrapper{
+  .container {
+    width: 100%;
+    height: 100vh;
     display: flex;
-    justify-content: left;
-    align-items: left;
-    opacity: 0;
-    animation: slideRight 1s ease forwards;
-    animation-delay: .9s;
+    justify-content: center;
+    align-items: center;
   }
+
   h5 {
     font-size: 4rem;
     font-weight: normal;
