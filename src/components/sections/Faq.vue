@@ -3,7 +3,7 @@
     <h1>FAQ</h1>
     <h2>Perguntas <span>Frequentes</span></h2>
       <v-row class="services-row" style="max-width: 1080px;">
-        <v-col cols="12" class="education-column" v-for="item, i in faqList.slice(0, sizeList)" :key="i">
+        <v-col cols="12" class="education-column" v-for="item, i in faqList.slice(0, 2)" :key="i">
           <div class="services-box">
             <div class="service-content">
               <div class="content">
@@ -14,10 +14,26 @@
             </div>
           </div>
         </v-col>
-      <div class="d-flex justify-center align-center w-100">
-        <v-btn :prepend-icon="btnName.icon" color="purple" @click="sizeList == 3 ? sizeList = 8 : sizeList = 3">{{ btnName.name }}</v-btn>
-      </div>
       </v-row>
+      <v-expand-transition>
+        <v-row class="services-row animate" style="max-width: 1080px;" v-if="showList2">
+          <v-col cols="12" class="education-column" v-for="item, i in faqList.slice(2, 8)" :key="i">
+            <div class="services-box">
+              <div class="service-content">
+                <div class="content">
+                  <h3>{{ item.title }}</h3>
+                  <p>{{ item.text }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-expand-transition>
+
+      <div class="d-flex justify-center align-center w-100">
+          <v-btn :prepend-icon="btnName.icon" color="purple" @click="showList2 = !showList2">{{ btnName.name }}</v-btn>
+        </div>
   </section >
 </template>
 
@@ -25,6 +41,7 @@
 import { ref, computed } from 'vue'
 
   const sizeList = ref(3)
+  const showList2 = ref(false)
   const faqList = [
     {id: 1, title:'Serve para quem ainda não decidiu se quer fazer mestrado?',
       text: 'Com toda a certeza. É importante que você conheça o que significa entrar no mestrado e ter um panorama geral de todo o processo seletivo te ajudará inclusive a decidir se você quer se preparar e quando você deseja começar a preparação.'},
@@ -45,9 +62,9 @@ import { ref, computed } from 'vue'
   ]
 
   const btnName = computed(() => {
-    return sizeList.value == 3
-    ? {icon: 'mdi-plus', name: 'Ver Mais'}
-    : {icon: 'mdi-minus', name: 'Ver Menos'}
+    return showList2.value
+    ? {icon: 'mdi-minus', name: 'Ver Menos'}
+    : {icon: 'mdi-plus', name: 'Ver Mais'}
   })
 
 </script>
@@ -78,6 +95,9 @@ import { ref, computed } from 'vue'
 .faq h2{
   font-size: 30px;
   margin-bottom: 5rem;
+  opacity: 0;
+  animation: slideRight 1s ease forwards;
+  animation-delay: 1s;
 }
 .faq h2 span{
   color: purple;
@@ -146,8 +166,8 @@ import { ref, computed } from 'vue'
   animation: showRight 1s ease forwards;
   animation-delay: calc(.3s * var(--i));
 }
-.education-column{
-  transition: .5s ease;
+.animate {
+  opacity: 1;
   animation: showRight 1s ease forwards;
 }
 @media (max-width: 771px) {
