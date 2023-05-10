@@ -88,7 +88,7 @@ import { ref, computed } from 'vue'
 
 .services-box{
   position: relative;
-  border-left: .2rem solid purple;
+  border-left: .2rem solid red;
 }
 .service-content{
   position: relative;
@@ -101,7 +101,7 @@ import { ref, computed } from 'vue'
   left: -1.1rem;
   width: 2rem;
   height: 2rem;
-  background: purple;
+  background: blue;
   border-radius: 50%;
 }
 .content{

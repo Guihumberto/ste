@@ -1,21 +1,22 @@
 <template>
   <header class="header" :class="menuShow ? 'bg-transparent':'headerDivsticky'">
-    <a  @click="scroll('home')" class="logo" :class="showMenuSuspense ? 'text-purple':''">Stephane Lima</a>
-    <nav class="navBar d-none d-sm-flex">
-      <a
-        v-for="item, i in menuList" :key="i"
-        @click="scroll(item.path)"
-        :class="item.path == idNameActiveSelect ? 'active' : ''"
-        :style="`--i:${i+1}`"
-      >{{ item.name }}</a>
-    </nav>
-    <v-spacer class="d-flex d-sm-none"></v-spacer>
+    <div class="divteste">
+      <a  @click="scroll('home')" class="logo" :class="showMenuSuspense ? 'text-purple':''">Stephane Lima</a>
+      <nav class="navBar d-none d-sm-flex">
+        <a
+          v-for="item, i in menuList" :key="i"
+          @click="scroll(item.path)"
+          :class="item.path == idNameActiveSelect ? 'active' : ''"
+          :style="`--i:${i+1}`"
+        >{{ item.name }}</a>
+      </nav>
       <v-btn
         @click="showMenuSuspense = !showMenuSuspense" id="menuBar"
         class="d-flex d-sm-none" variant="flat" color="transparent">
-        <v-icon size="3.5rem" :color="showMenuSuspense ? 'purple':'black'">{{ showMenuSuspense ? 'mdi-close' : 'mdi-menu' }}</v-icon>
+        <v-icon size="3.5rem" :color="showMenuSuspense ? 'purple':'white'">{{ showMenuSuspense ? 'mdi-close' : 'mdi-menu' }}</v-icon>
         <span class="animate" style="--i:2"></span>
       </v-btn>
+    </div>
   </header>
   <v-expand-transition>
       <div v-if="showMenuSuspense" class="menuSuspense d-flex d-sm-none">
@@ -130,8 +131,28 @@
   z-index: 100;
   transition: .5s;
 }
+.header .divteste{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .headerDivsticky{
-  background: #fff;
+  margin-top: 1rem;
+}
+.headerDivsticky .divteste{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--second-bg-color);
+  padding: 1rem 5rem;
+  border-radius: 25px;
+}
+.headerDivsticky .divteste .logo{
+  color: #fff;
+}
+.headerDivsticky .divteste a{
+  color: #fff;
 }
 .trocaCor{
   background: var(--second-bg-color);
@@ -247,6 +268,13 @@
     padding-right: 1%;
     padding-left: 4%;
   }
+}
+.header .divteste{
+  display: flex;
+  justify-content: space-between;
+}
+.header .divteste .logo{
+  /* font-size: 2rem; */
 }
 /* @media (min-width: 1540px){
   .header{

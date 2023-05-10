@@ -162,6 +162,7 @@ section{
   width: 50%;
   height: 4px;
   background: white;
+  box-shadow: 0 .1rem 2rem rgb(99, 98, 98);
   opacity: 0;
   transition: .5s;
 }
