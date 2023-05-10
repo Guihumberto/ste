@@ -32,15 +32,16 @@
       </v-expand-transition>
 
       <div class="d-flex justify-center align-center w-100">
-          <v-btn :prepend-icon="btnName.icon" color="purple" @click="showList2 = !showList2">{{ btnName.name }}</v-btn>
+        <div style="position: relative;">
+          <a @click.prevent="showList2 = !showList2" class="btnstyle">{{ btnName.name }}</a>
         </div>
+      </div>
   </section >
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
-  const sizeList = ref(3)
   const showList2 = ref(false)
   const faqList = [
     {id: 1, title:'Serve para quem ainda não decidiu se quer fazer mestrado?',
@@ -63,8 +64,12 @@ import { ref, computed } from 'vue'
 
   const btnName = computed(() => {
     return showList2.value
-    ? {icon: 'mdi-minus', name: 'Ver Menos'}
-    : {icon: 'mdi-plus', name: 'Ver Mais'}
+    ? {icon: 'mdi-minus', name: '- Ver Menos'}
+    : {icon: 'mdi-plus', name: '+ Ver Mais'}
+  })
+
+  watch(showList2, () => {
+    window.location.href = "/#faq";
   })
 
 </script>
@@ -184,5 +189,37 @@ import { ref, computed } from 'vue'
     font-size: 20px;
     margin-bottom: 5rem;
   }
+}
+
+.btnstyle{
+ position: relative;
+ display: inline-flex;
+ background: #fff;
+ padding: 10px 20px;
+ color: purple;
+ border: 2px solid purple;
+ border-radius: 15px;
+ font-size: 20px;
+ z-index: 1;
+ overflow: hidden;
+ transition: .5s;
+}
+.btnstyle::before{
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 0;
+ background: purple;
+ height: 100%;
+ z-index: -1;
+ transition: .5s;
+
+}
+.btnstyle:hover::before{
+  width: 100%;
+}
+.btnstyle:hover {
+  color: white
 }
 </style>

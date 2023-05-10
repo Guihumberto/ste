@@ -109,6 +109,7 @@ section{
 .pillars-content h3:hover {
   box-shadow: 0 .1rem 2rem rgb(99, 98, 98);
   transform: scale(1.05);
+  border: 2px solid purple;
 }
 .pillars-content h3 {
   position: absolute;
@@ -157,6 +158,7 @@ section{
 }
 .pillar1 span, .pillar2 span {
   position: absolute;
+  display: inline-flex;
   left: 0;
   margin-left: 100%;
   width: 50%;
@@ -165,6 +167,21 @@ section{
   box-shadow: 0 .1rem 2rem rgb(99, 98, 98);
   opacity: 0;
   transition: .5s;
+  z-index: 1;
+}
+.pillar1 span::before, .pillar2 span::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  background: purple;
+  height: 100%;
+  z-index: -1;
+  transition: .5s;
+}
+.pillar1:hover span::before, .pillar2:hover span::before{
+  width: 100%;
 }
 .pillar1:hover span{
   opacity: 1;
@@ -174,13 +191,30 @@ section{
 }
 .pillar3 span, .pillar4 span, .pillar5 span {
   position: absolute;
+  display: inline-flex;
   right: 0;
   margin-right: 100%;
   width: 50%;
   height: 4px;
   background: white;
+  box-shadow: 0 .1rem 2rem rgb(99, 98, 98);
   opacity: 0;
   transition: .5s;
+  z-index: 1;
+}
+.pillar3 span::before, .pillar4 span::before, .pillar5 span::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  background: purple;
+  height: 100%;
+  z-index: -1;
+  transition: .5s;
+}
+.pillar3:hover span::before, .pillar4:hover span::before, .pillar5:hover span::before{
+  width: 100%;
 }
 .pillar3:hover span{
   opacity: 1;
