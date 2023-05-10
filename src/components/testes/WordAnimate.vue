@@ -1,102 +1,78 @@
 <template>
-  <div class="wrapper">
-    <h5>
-      <span class="typed-text">{{ typeValue }}</span>
-      <span class="cursor" :class="{'typing': typeStatus}">&nbsp;</span>
-    </h5>
+  <div class="cont">
+    <!-- <div class="square">
+      <span style="--i:0"></span>
+      <span style="--i:1"></span>
+      <span style="--i:2"></span>
+      <span style="--i:3"></span>
+    </div> -->
+    <div class="reta">
+      <span style="--i:1"></span>
+    </div>
   </div>
 </template>
 
-<script>
-  export default {
-    data: () => {
-      return {
-        typeValue: '',
-        typeStatus: false,
-        typeArray: ['Professora', 'Mentora', 'Pesquisadora', 'Doutoranda'],
-        typingSpeed: 100,
-        erasingSpeed: 50,
-        newTextDelay: 1000,
-        typeArrayIndex: 0,
-        charIndex: 0
-      }
-    },
-    methods: {
-      typeText() {
-        if(this.charIndex < this.typeArray[this.typeArrayIndex].length) {
-          if(!this.typeStatus)
-            this.typeStatus = true;
-
-          this.typeValue += this.typeArray[this.typeArrayIndex].charAt(this.charIndex);
-          this.charIndex += 1;
-
-          setTimeout(this.typeText, this.typingSpeed);
-        }
-        else {
-          this.typeStatus = false;
-          setTimeout(this.eraseText, this.newTextDelay);
-        }
-      },
-      eraseText() {
-        if(this.charIndex > 0) {
-          if(!this.typeStatus)
-            this.typeStatus = true;
-
-          this.typeValue = this.typeArray[this.typeArrayIndex].substring(0, this.charIndex - 1);
-          this.charIndex -= 1;
-          setTimeout(this.eraseText, this.erasingSpeed);
-        }
-        else {
-          this.typeStatus = false;
-          this.typeArrayIndex += 1;
-          if(this.typeArrayIndex >= this.typeArray.length)
-            this.typeArrayIndex = 0;
-
-          setTimeout(this.typeText, this.typingSpeed + 1000);
-        }
-      }
-    },
-    created() {
-      setTimeout(this.typeText, this.newTextDelay + 200);
-    }
-  }
+<script setup>
 </script>
 
-<style lang="scss" scoped>
-  .container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+<style scoped>
+.cont{
+  position: relative;
+}
+.reta{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: yellowgreen;
+}
+.reta span{
+  position: absolute;
+  inset: 10px;
+  background: blue;
+}
+.reta span::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: red;
+  animation: anime 4s linear infinite;
+}
+@keyframes anime {
+  0%{
+    transform: translateX(-100%);
   }
-
-  h5 {
-    font-size: 4rem;
-    font-weight: normal;
-
-    span.typed-text {
-      font-size: 40px;
-      color: #0ef;
-      text-shadow: 0 0 10px #0ef;
-    }
-
-    span.cursor {
-      display: inline-block;
-      margin-left: 3px;
-      width: 4px;
-      background-color: #000;
-      animation: cursorBlink 1s infinite;
-    }
-
-    span.cursor.typing {
-      animation: none;
-    }
+  50%, 100%{
+    transform: translateX(100%);
   }
-
-  @keyframes cursorBlink {
-    49% { background-color: #fff; }
-    50% { background-color: transparent; }
-    99% { background-color: transparent; }
+}
+.square{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+}
+.square span{
+  position: absolute;
+  inset: 10px;
+  overflow: hidden;
+  transform: rotate(calc(90deg * var(--i)));
+}
+.square span::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: #0f0;
+  transform: translateX(-100%);
+  animation: animate 4s linear infinite;
+  animation-delay: calc(1s * var(--i));
+}
+@keyframes animate {
+  0%{
+    transform: translateX(-100%);
   }
+  50%, 100%{
+    transform: translateX(100%);
+  }
+}
 </style>

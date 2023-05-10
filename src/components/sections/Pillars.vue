@@ -87,11 +87,10 @@ section{
   align-items: center;
   text-align: center;
   margin-top: 5rem;
-  height: 30vh;
+  height: 500px;
   color: #fff;
-  background: url(https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg) no-repeat;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(50deg, var(--second-bg-color), black, var(--second-bg-color));
+  border: 5px solid purple;
 }
 .pillars-content h2{
   position: relative;
@@ -161,16 +160,35 @@ section{
   left: 0;
   margin-left: 100%;
   width: 50%;
-  height: 10px;
+  height: 4px;
   background: white;
+  opacity: 0;
+  transition: .5s;
+}
+.pillar1:hover span{
+  opacity: 1;
+}
+.pillar2:hover span{
+  opacity: 1;
 }
 .pillar3 span, .pillar4 span, .pillar5 span {
   position: absolute;
   right: 0;
   margin-right: 100%;
   width: 50%;
-  height: 10px;
+  height: 4px;
   background: white;
+  opacity: 0;
+  transition: .5s;
+}
+.pillar3:hover span{
+  opacity: 1;
+}
+.pillar4:hover span{
+  opacity: 1;
+}
+.pillar5:hover span{
+  opacity: 1;
 }
 .bannerInfo{
   position: absolute;
@@ -199,6 +217,9 @@ section{
   font-size: 1.5rem;
 }
 @media (max-width: 700px) {
+  .pillars-content {
+    height: 280px;
+  }
   .pillars h1{
     font-size: 35px;
   }
@@ -209,7 +230,8 @@ section{
     font-size: .9rem;
   }
   .bannerInfo{
-    width: 450px;
+    max-width: 400px;
+    padding: 14px;
     max-height: 280px;
     background: purple;
     border: 2px solid rgba(255, 255, 255, .5);
