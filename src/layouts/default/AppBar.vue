@@ -14,14 +14,18 @@
         @click="showMenuSuspense = !showMenuSuspense" id="menuBar"
         class="d-flex d-sm-none" variant="flat" color="transparent">
         <v-icon size="3.5rem" :color="showMenuSuspense ? 'purple':'white'">{{ showMenuSuspense ? 'mdi-close' : 'mdi-menu' }}</v-icon>
-        <span class="animate" style="--i:2"></span>
       </v-btn>
     </div>
   </header>
   <v-expand-transition>
       <div v-if="showMenuSuspense" class="menuSuspense d-flex d-sm-none">
         <v-list class="bg-transparent text-white w-100" nav>
-          <v-list-item :prepend-icon="item.icon" v-for="item, i in menuList" :key="i" @click="scroll(item.path)" :class="idNameActiveSelect == item.path ? 'active':''">
+          <v-list-item
+            :prepend-icon="item.icon"
+            v-for="item, i in menuList"
+            :key="i" @click="scroll(item.path)"
+            :class="idNameActiveSelect == item.path ? 'active':''"
+          >
             {{ item.name }}
           </v-list-item>
         </v-list>
@@ -179,6 +183,7 @@
   transition: .5s;
 }
 .navBar a{
+  position: relative;
   display: inline-block;
   font-size: 18px;
   font-weight: 500;
@@ -189,6 +194,23 @@
   animation: slideTop 1s ease forwards;
   animation-delay: calc(.2s * var(--i));
   transition: .5s ease;
+}
+.navBar a::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(45deg, #f06, #3cf);
+  border-radius: 5px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .5s;
+}
+.navBar a:hover::after{
+  transform-origin: left;
+  transform: scaleX(1);
 }
 .navBar .active,
 .navBar a:hover{

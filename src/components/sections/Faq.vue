@@ -214,7 +214,6 @@ import { ref, computed, watch } from 'vue'
  height: 100%;
  z-index: -1;
  transition: .5s;
-
 }
 .btnstyle:hover::before{
   width: 100%;

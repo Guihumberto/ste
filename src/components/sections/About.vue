@@ -36,7 +36,6 @@ section{
   background: var(--second-bg-color);
   color: #fff;
 }
-
 .about-img{
 }
 .about-content{

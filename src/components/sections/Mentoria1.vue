@@ -1,6 +1,6 @@
 <template>
   <section class="blog" id="blog">
-    <h1 class="text-center">Mentoria </h1>
+    <h1 class="text-center">Mentoria</h1>
 
     <div class="blog-content">
       <div class="services-box" v-for="item, i in 3" :key="i">
